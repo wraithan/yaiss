@@ -1,0 +1,4 @@
+-i http://simple.crate.io/
+-r common-requirements.txt
+django-extensions
+django-annoying

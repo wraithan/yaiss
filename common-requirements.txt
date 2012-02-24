@@ -1,0 +1,5 @@
+-i http://simple.crate.io/
+django
+fabric
+redis
+psycopg2
