@@ -7,7 +7,6 @@ class Line(models.Model):
     message = models.TextField()
     nick = models.ForeignKey('writer.Nick')
     channel = models.ForeignKey('writer.Channel')
-    log_file = models.TextField()
     action_type = models.IntegerField(choices=LINE_ACTION_TYPE_CHOICES)
 
 
