@@ -20,6 +20,8 @@ class Command(BaseCommand):
                 if message['type'] == 'privmsg':
                     Line.objects.create(time=datetime.now(),
                                         message=message['data']['message'],
-                                        nick=Nick.objects.get_or_create(name=message['data']['sender'], server=Server.objects.get_or_create(name='irc.freenode.net')[0])[0],
-                                        channel=Channel.objects.get_or_create(name=message['data']['channel'], server=Server.objects.get_or_create(name='irc.freenode.net')[0])[0],
+                                        nick=Nick.objects.get_or_create(name=message['data']['sender'],
+                                                                        server=Server.objects.get_or_create(name='irc.freenode.net')[0])[0],
+                                        channel=Channel.objects.get_or_create(name=message['data']['channel'],
+                                                                              server=Server.objects.get_or_create(name='irc.freenode.net')[0])[0],
                                         action_type=LINE_ACTION_TYPE_MESSAGE,)
