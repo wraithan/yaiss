@@ -1,3 +1,28 @@
 from django.db import models
+from writer import LINE_ACTION_TYPE_CHOICES
 
-# Create your models here.
+class Line(models.Model):
+    """ A line of text in IRC """
+    time = models.DateTimeField()
+    message = models.TextField()
+    nick = models.ForeignKey('writer.Nick')
+    channel = models.ForeignKey('writer.Channel')
+    log_file = models.TextField()
+    action_type = models.IntegerField(choices=LINE_ACTION_TYPE_CHOICES)
+
+
+class Nick(models.Model):
+    """ A user who spoke or did an action. """
+    name = models.CharField(max_length=255)
+    server = models.ForeignKey('writer.Server')
+
+
+class Channel(models.Model):
+    """ A channel that an action happened in. """
+    name = models.CharField(max_length=255)
+    server = models.ForeignKey('writer.Server')
+
+
+class Server(models.Model):
+    """ A server that an action happened on. """
+    name = models.CharField(max_length=255)
