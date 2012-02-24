@@ -15,11 +15,23 @@ class Nick(models.Model):
     name = models.CharField(max_length=255)
     server = models.ForeignKey('writer.Server')
 
+    @property
+    def first_seen(self):
+        return self.line_set.all().order_by('-time')[0].time
+
+    @property
+    def random_quote(self):
+        return self.line_set.all().order_by('?')[0].message
+
 
 class Channel(models.Model):
     """ A channel that an action happened in. """
     name = models.CharField(max_length=255)
     server = models.ForeignKey('writer.Server')
+
+    @property
+    def first_seen(self):
+        return self.line_set.all().order_by('-time')[0].time
 
 
 class Server(models.Model):
