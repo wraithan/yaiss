@@ -1,6 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
 {% for nick in nicks %}
 <h2>{{ nick.name }}</h2> 
 <dt>First seen: </dt> <dd>{{ nick.first_seen }}</dd>
 <dt>Lines: </dt> <dd>{{ nick.line_set.all.count }}</dd>
 <dt>Random Quote: </dt> <dd>{{ nick.random_quote }}</dd>
 {% endfor %}
+{% endblock content %}
