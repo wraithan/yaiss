@@ -14,10 +14,11 @@ class Nick(models.Model):
     """ A user who spoke or did an action. """
     name = models.CharField(max_length=255)
     server = models.ForeignKey('writer.Server')
+    ignore = models.BooleanField(default=False)
 
     @property
     def first_seen(self):
-        return self.line_set.all().order_by('-time')[0].time
+        return self.line_set.all().order_by('time')[0].time
 
     @property
     def random_quote(self):
@@ -31,7 +32,7 @@ class Channel(models.Model):
 
     @property
     def first_seen(self):
-        return self.line_set.all().order_by('-time')[0].time
+        return self.line_set.all().order_by('time')[0].time
 
 
 class Server(models.Model):
